@@ -188,7 +188,7 @@ def mouseButtonDown(event):
     global selectedNodes  
     mousePressed = pygame.mouse.get_pressed()
     if mode == 0 and mousePressed[0]:
-        nodes.append(copy.deepcopy(Node(pygame.mouse.get_pos())))
+        nodes.append(Node(pygame.mouse.get_pos()))
         print("added")
     elif mode == 1 and mousePressed[0]:
         for node in nodes:
