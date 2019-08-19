@@ -1,4 +1,4 @@
-import pickle
+import pickle, math
 import pygame, os 
 
 class GameInfo:
@@ -14,6 +14,7 @@ class Node:
         self.pos = pos
         self.colour = RED
         self.connections = []
+        self.distance = math.inf
 
     def addConnection(self, connection):
         self.connections.append(connection)
@@ -22,6 +23,8 @@ class Node:
     def display(self):
         pygame.draw.circle(screen, self.colour, self.pos, self.radius)
         centre(str(self.ID), text, WHITE, self.pos)
+        if self.distance != math.inf:
+            centre(str(self.distance), text, BLACK, [self.pos[0], self.pos[1] - self.radius - 10])
     
     def selected(self, mousePos):
         if (mousePos[0] - self.pos[0])**2 + (mousePos[1] - self.pos[1])**2 < self.radius**2:
@@ -30,6 +33,12 @@ class Node:
     
     def setColour(self, colour):
         self.colour = colour
+
+    def getDistance(self):
+        return self.distance
+
+    def setDistance(self, distance):
+        self.distance = distance
 
 
 class Connection:
@@ -40,15 +49,15 @@ class Connection:
         pos2 = nodes[1].pos
         self.weightPos = [(max(pos1[0],pos2[0]) - min(pos1[0],pos2[0])) /2 + min(pos1[0],pos2[0]), (max(pos1[1],pos2[1]) - min(pos1[1],pos2[1])) / 2 + min(pos1[1],pos2[1])]
         self.colour = BLACK
-        self.weight = ""
+        self.weight = -1
 
     def setWeight(self, weight):
         self.weight = weight
 
     def display(self):
         pygame.draw.line(screen, self.colour, self.nodes[0].pos, self.nodes[1].pos, 2)
-        if len(self.weight) != 0:
-            centre(self.weight, text, RED, self.weightPos)
+        if self.weight != -1:
+            centre(str(self.weight), text, RED, self.weightPos)
 
     def setColour(self, colour):
         self.colour = colour
@@ -86,12 +95,12 @@ displayMessage = ""
 
 #main is called once
 def main():
-    global screen, size, text, titleFont, subtitleFont, frameRate
+    global screen, size, text, titleFont, subtitleFont, clock
     pygame.init()
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Network Creator")
 
-    pygame.time.Clock().tick(frameRate)
+    clock = pygame.time.Clock()
     #1ms delay, and then another event will be sent every 50ms
     pygame.key.set_repeat(1,500)
 
@@ -102,6 +111,7 @@ def main():
 
 def mainLoop():
     while True:
+        clock.tick(frameRate)
         for event in pygame.event.get(): 
             eventManager(event)
         
@@ -181,7 +191,7 @@ def saveLevel():
 def saveWeight():
     global weight
     increaseMode(1)
-    connections[len(connections) - 1].setWeight(weight)
+    connections[len(connections) - 1].setWeight(int(weight))
     weight = ""
 
 def mouseButtonDown(event):
