@@ -14,6 +14,9 @@ Python files for the creation and solving of networks.
    
   - Level Solver:
     
-    >*Currently WIP*
+    >Loads a network and finds the shortest distance from a selected start node to 
+    a selected end node using Dijkstra's algorithm.
+    
+    more info on Dijkstra's algorithm can be found on the wikipedia page: [here](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
     
     
