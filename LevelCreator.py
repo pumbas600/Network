@@ -1,6 +1,5 @@
 import pickle
 import pygame, os 
-import copy
 
 class GameInfo:
     def __init__(self, nodes, connections):
