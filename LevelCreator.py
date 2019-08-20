@@ -50,17 +50,15 @@ class Connection:
         self.weightPos = [(max(pos1[0],pos2[0]) - min(pos1[0],pos2[0])) /2 + min(pos1[0],pos2[0]), (max(pos1[1],pos2[1]) - min(pos1[1],pos2[1])) / 2 + min(pos1[1],pos2[1])]
         self.colour = BLACK
         self.weight = -1
+        self.width = 3
 
     def setWeight(self, weight):
         self.weight = weight
 
     def display(self):
-        pygame.draw.line(screen, self.colour, self.nodes[0].pos, self.nodes[1].pos, 2)
+        pygame.draw.line(screen, self.colour, self.nodes[0].pos, self.nodes[1].pos, self.width)
         if self.weight != -1:
             centre(str(self.weight), text, RED, self.weightPos)
-
-    def setColour(self, colour):
-        self.colour = colour
 
 dictionary = {}
 def globalID(identifier):
