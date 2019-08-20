@@ -57,17 +57,21 @@ class Connection:
         self.weightPos = [(max(pos1[0],pos2[0]) - min(pos1[0],pos2[0])) /2 + min(pos1[0],pos2[0]), (max(pos1[1],pos2[1]) - min(pos1[1],pos2[1])) / 2 + min(pos1[1],pos2[1])]
         self.colour = BLACK
         self.weight = -1
+        self.width = 2
 
     def setWeight(self, weight):
         self.weight = weight
 
     def display(self):
-        pygame.draw.line(screen, self.colour, self.nodes[0].pos, self.nodes[1].pos, 2)
+        pygame.draw.line(screen, self.colour, self.nodes[0].pos, self.nodes[1].pos, self.width)
         if self.weight != -1:
             centre(str(self.weight), text, RED, self.weightPos)
 
     def setColour(self, colour):
         self.colour = colour
+
+    def setWidth(self, width):
+        self.width = width
 
 BLACK = 0,0,0
 WHITE = 255,255,255
@@ -92,7 +96,7 @@ frame = 0
 frameRate = 30
 
 def main():
-    global screen, size, text, titleFont, gameInfo, nodes, connections, filePath, fileType, clock
+    global screen, size, text, subtitleFont, titleFont, gameInfo, nodes, connections, filePath, fileType, clock
     
     
     pygame.init()
@@ -105,11 +109,12 @@ def main():
     clock = pygame.time.Clock()
 
     text = pygame.font.Font(None, 24)
+    subtitleFont = pygame.font.Font(None, 30)
     titleFont = pygame.font.Font(None, 40)
 
     while True:
-        #fileName = input("Enter the filename: ")
-        fileName = "networkdemo"
+        fileName = input("Enter the filename: ")
+        #fileName = "networkdemo1"
         print(filePath + fileName + "." + fileType)
 
         if not os.path.isfile(filePath + fileName + "." + fileType):
@@ -139,7 +144,7 @@ def mainLoop():
         for node in nodes:
             node.display()
 
-        if mode == 2 and frame % 10 == 0:
+        if mode == 2:
             #Dijkstra's algorithm:
             if not initiated:
                 unvisitedNodes = []
@@ -150,7 +155,7 @@ def mainLoop():
                     unvisitedNodes.append(node)
                 initiated = True
 
-            if len(unvisitedNodes) != 0:
+            if len(unvisitedNodes) != 0 and frameRate % 15 == 0:
                 node = nodeWithShortestDistance(unvisitedNodes)
                 unvisitedNodes.remove(node)
                 neighbours, connectionsList = nodeNeighbours(node, unvisitedNodes)
@@ -163,17 +168,17 @@ def mainLoop():
                         
             else:
                 if not setPath:
-                    node, connection = endNode.getPrev()
-                    connection.setColour(BLUE)
+                    node = endNode
                     while True:
                         node, nextConnection = node.getPrev()
                         if node != None:
                             nextConnection.setColour(BLUE)
+                            nextConnection.setWidth(4)
                         else:
                             break
                     setPath = True
                     print("Finished")
-
+                centre("Shortest Distance found: " + str(endNode.getDistance()), subtitleFont, BLACK, [width / 2, 40])
                 
         
         frame += 1
