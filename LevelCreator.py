@@ -50,7 +50,7 @@ class Connection:
         self.weightPos = [(max(pos1[0],pos2[0]) - min(pos1[0],pos2[0])) /2 + min(pos1[0],pos2[0]), (max(pos1[1],pos2[1]) - min(pos1[1],pos2[1])) / 2 + min(pos1[1],pos2[1])]
         self.colour = BLACK
         self.weight = -1
-        self.width = 3
+        self.width = 2
 
     def setWeight(self, weight):
         self.weight = weight
