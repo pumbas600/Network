@@ -7,6 +7,10 @@ Python files for the creation and solving of networks.
   > Requires pygame to work. Installation instructions can be found: [here](https://www.pygame.org/wiki/GettingStarted)
 
 ## Files: 
+
+    These could just as easily be combined into one single file, however, I specifically seperated them 
+    so that I could test Python's pickling.
+    
   - Level Creator: 
   
     >Creates the network and then saves it as a .lvl file which
