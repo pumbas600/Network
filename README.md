@@ -1,6 +1,7 @@
 # Network
 
 Python files for the creation and solving of networks.
+This was split into 2 files so that I could test python's Pickling. This could be very easily combined into one program.
 
 ## Dependencies:
 
