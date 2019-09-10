@@ -16,7 +16,7 @@ This was split into 2 files so that I could test python's Pickling. This could b
   
   ...
   
-  initiateModule(surface, font) #To be used to display the nodes and connections.
+  initialiseModule(surface, font) #To be used to display the nodes and connections.
   ```
 
 ## Files: 
