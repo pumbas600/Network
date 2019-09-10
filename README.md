@@ -13,10 +13,11 @@ This was split into 2 files so that I could test python's Pickling. This could b
   
   ```python
   from NetworkBase import *
+  import pygame
   
   ...
   
-  initialiseModule(surface, font) #To be used to display the nodes and connections.
+  initialiseModule(pygame.surface, pygame.font) #To be used to display the nodes and connections.
   ```
 
 ## Files: 
