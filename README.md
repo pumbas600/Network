@@ -9,6 +9,8 @@ This was split into 2 files so that I could test python's Pickling. This could b
   
   The "With Module" files require network base to be imported and initialised. This can be done by:
   
+  **Note:** The module must be in the same directory as NetworkCreator.py and NetworkSolver.py
+  
   ```python
   from NetworkBase import *
   
@@ -22,12 +24,12 @@ This was split into 2 files so that I could test python's Pickling. This could b
     These could just as easily be combined into one single file, however, I specifically seperated them 
     so that I could test Python's pickling.
     
-  - Level Creator: 
+  - Network Creator: 
   
     >Creates the network and then saves it as a .lvl file which
     can be access by the Level Solver file.
    
-  - Level Solver:
+  - Network Solver:
     
     >Loads a network and finds the shortest distance from a selected start node to 
     a selected end node using Dijkstra's algorithm.
