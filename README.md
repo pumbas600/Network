@@ -7,9 +7,11 @@ This was split into 2 files so that I could test python's Pickling. This could b
 
   Requires pygame to work. Installation instructions can be found: [here](https://www.pygame.org/wiki/GettingStarted)
   
-  The "With Module" files require network base to be imported and initialised. This can be done by:
+  The "With Module" files require network base to be imported and initialised.
   
   **Note:** The module must be in the same directory as NetworkCreator.py and NetworkSolver.py
+  
+  ### Usage:
   
   ```python
   from NetworkBase import *
