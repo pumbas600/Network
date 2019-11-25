@@ -31,8 +31,8 @@ def main():
     initialiseModule(screen, text)
 
     while True:
-        #fileName = input("Enter the filename: ")
-        fileName = "netword"
+        fileName = input("Enter the filename: ")
+        #fileName = "netword"
         print(filePath + fileName + "." + fileType)
 
         if not os.path.isfile(filePath + fileName + "." + fileType):
