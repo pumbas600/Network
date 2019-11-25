@@ -22,7 +22,7 @@ This was split into 2 files so that I could test python's Pickling. This could b
   initialiseModule(pygame.surface, pygame.font) #To be used to display the nodes and connections.
   ```
   
-  #### Network Creator:
+  ### Network Creator:
   
   Cycle between *Place Nodes* and *Add Connections* modes with *'='* key or by *scrolling* with middle mouse button.
   
@@ -66,15 +66,36 @@ This was split into 2 files so that I could test python's Pickling. This could b
   
   ↳ If that file already exists, you will be prompted to change the name of the network.
   
+  ### Network Solver:
   
+  Initially you will be prompted for a filepath for the network file (the .lvl is optional).
   
+  If the file exists, the network will be opened up in *Set Start Node* mode. 
   
+  Cycle between *Set Start Node* and *Set End Node* modes with *'='* key or by *scrolling* with middle mouse button.
   
+  *Escape:* Quits program.
   
+  ***Set Start Node:***
   
+  *Left Click:* Sets start node, overriding previous start node.
   
+  *Right Click or Return:* Changes the mode to: *Solve*.
   
-
+  ↳ Only is the start node and end node has been set.
+  
+  ***Set End Node:***
+  
+  *Left Click:* Sets end node, overriding previous end node.
+  
+  *Right Click or Return:* Changes the mode to: *Solve*.
+  
+  ↳ Only is the start node and end node has been set.
+  
+  ***Solve:***
+  
+  Solves the network, from the start node to the end node.
+  
 ## Files: 
 
     These could just as easily be combined into one single file, however, I specifically seperated them 
