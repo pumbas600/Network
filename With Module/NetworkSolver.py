@@ -6,7 +6,6 @@ size = width, height = 800,800
 mode = 0
 modeTitles = ["Set start Node", "Set End Node", "Solve"]
 fileType = "lvl"
-filePath = "D:/Python/Saves/Node/LevelCreator/"
 startNode = None
 endNode = None
 setPath = False
@@ -31,11 +30,21 @@ def main():
     initialiseModule(screen, text)
 
     while True:
-        fileName = input("Enter the filename: ")
-        #fileName = "netword"
-        print(filePath + fileName + "." + fileType)
+        fileName = input("Enter the filename and filepath: ")
+        splitFileName = fileName.split(".")
+        
+        if splitFileName.length > 2:
+            print("That is an invalid filepath! Try again")
+            continue
+            
+        elif splitFileName.length == 2 and splitFileName[1] != fileType:
+            print("thats the wrong file type, was expecting: " + fileType)
+            continue
+            
+        else:
+            fileName += "." + fileType
 
-        if not os.path.isfile(filePath + fileName + "." + fileType):
+        if not os.path.isfile(fileName):
             print("File doesn't exist! Try again")
             continue
         else:
@@ -161,7 +170,7 @@ def mouseButtonDown(event):
         if result != False:
             endNode = result
 
-    elif (mode == 0 or mode == 1) and not mousePressed[0] and not mousePressed[1] and not mousePressed[2]:
+    elif (mode == 0 or mode == 1) and len(set(mousePressed)) == 1 and not mousePressed[0]:
         increaseMode(True)
 
     elif (mode == 0 or mode == 1) and startNode != None and endNode != None and mousePressed[1]:
